@@ -154,7 +154,6 @@ public class GonioView extends View {
 
     public void setColor(int color) {
         mHandlePaint.setColor(color);
-        mTextPaint.setColor(color);
         invalidate();
     }
 

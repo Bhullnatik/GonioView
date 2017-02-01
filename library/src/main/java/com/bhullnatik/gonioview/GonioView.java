@@ -47,10 +47,9 @@ public class GonioView extends View {
         mTextPaint.setAntiAlias(true);
 
         mHandles = new Point[3];
-        // TODO: Setup initial points
-        mHandles[0] = new Point(50, 50);
-        mHandles[1] = new Point(100, 25);
-        mHandles[2] = new Point(100, 75);
+        mHandles[0] = new Point(700, 250);
+        mHandles[1] = new Point(450, 250);
+        mHandles[2] = new Point(500, 475);
     }
 
     @Override

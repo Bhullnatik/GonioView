@@ -43,8 +43,7 @@ public class GonioView extends View {
         mHandlePaint.setStrokeWidth(8f);
 
         mTextPaint.setTextSize(64f);
-        mTextPaint.setColor(color);
-        mTextPaint.setTextAlign(Paint.Align.CENTER);
+        mTextPaint.setColor(Color.WHITE);
         mTextPaint.setAntiAlias(true);
 
         mHandles = new Point[3];
@@ -76,10 +75,12 @@ public class GonioView extends View {
     }
 
     private void drawAngle(Canvas canvas) {
+        String textAngle = getCurrentAngle() + "˚";
         int x = (mHandles[0].x + mHandles[1].x + mHandles[2].x) / 3;
         int y = (mHandles[0].y + mHandles[1].y + mHandles[2].y) / 3;
 
-        canvas.drawText(getCurrentAngle() + "˚", x, y, mTextPaint);
+        canvas.drawRect(x - 20, y - 64, x + mTextPaint.measureText(textAngle) + 20, y + 16, mHandlePaint);
+        canvas.drawText(textAngle, x, y, mTextPaint);
     }
 
     @Override

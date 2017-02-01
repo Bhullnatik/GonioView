@@ -132,8 +132,8 @@ public class GonioView extends View {
     }
 
     private boolean checkInBounds(float x, float y) {
-        return (((getLeft() + HANDLE_SIZE / 2) < x && x < getRight() - HANDLE_SIZE / 2) &&
-                ((getTop() + HANDLE_SIZE / 2) < y && y < getBottom() - HANDLE_SIZE / 2));
+        return ((HANDLE_SIZE / 2 < x && x < getRight() - HANDLE_SIZE / 2) &&
+                (HANDLE_SIZE / 2 < y && y < getBottom() - HANDLE_SIZE / 2));
     }
 
     public int getCurrentAngle() {

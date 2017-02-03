@@ -17,6 +17,7 @@ public class GonioView extends View {
     private Point mHandles[];
 
     private float mHandleSize = 42f;
+    private int mHandleColor = Color.BLUE;
 
     private OnAngleSelectedListener mListener = null;
 
@@ -33,11 +34,10 @@ public class GonioView extends View {
     }
 
     private void initialize() {
-        int color = Color.BLUE;
         mHandlePaint = new Paint();
         mTextPaint = new Paint();
 
-        mHandlePaint.setColor(color);
+        mHandlePaint.setColor(mHandleColor);
         mHandlePaint.setAntiAlias(true);
         mHandlePaint.setStyle(Paint.Style.FILL_AND_STROKE);
         mHandlePaint.setStrokeWidth(mHandleSize / 4);
@@ -61,12 +61,17 @@ public class GonioView extends View {
     }
 
     private void drawHandles(Canvas canvas) {
+        int handleColor = Color.argb(75, Color.red(mHandleColor), Color.green(mHandleColor), Color.blue(mHandleColor));
+        mHandlePaint.setColor(handleColor);
+
         for (Point handle : mHandles) {
             canvas.drawCircle(handle.x, handle.y, mHandleSize, mHandlePaint);
         }
     }
 
     private void drawLines(Canvas canvas) {
+        mHandlePaint.setColor(mHandleColor);
+
         Point middleHandle = mHandles[1];
 
         canvas.drawLine(mHandles[0].x, mHandles[0].y, middleHandle.x, middleHandle.y, mHandlePaint);
@@ -153,6 +158,7 @@ public class GonioView extends View {
     }
 
     public void setColor(int color) {
+        mHandleColor = color;
         mHandlePaint.setColor(color);
         invalidate();
     }

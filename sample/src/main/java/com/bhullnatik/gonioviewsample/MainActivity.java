@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(gonioView);
 
         gonioView.setColor(Color.RED);
+        // In Pixels
+        gonioView.setHandleSize(64);
         gonioView.setOnAngleSelectedListener(new GonioView.OnAngleSelectedListener() {
             @Override
             public void onAngleSelected() {

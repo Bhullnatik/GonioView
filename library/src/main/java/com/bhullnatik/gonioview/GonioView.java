@@ -16,7 +16,7 @@ public class GonioView extends View {
 
     private Point mHandles[];
 
-    private static final float HANDLE_SIZE = 36f;
+    private float mHandleSize = 42f;
 
     private OnAngleSelectedListener mListener = null;
 
@@ -40,7 +40,7 @@ public class GonioView extends View {
         mHandlePaint.setColor(color);
         mHandlePaint.setAntiAlias(true);
         mHandlePaint.setStyle(Paint.Style.FILL_AND_STROKE);
-        mHandlePaint.setStrokeWidth(8f);
+        mHandlePaint.setStrokeWidth(mHandleSize / 4);
 
         mTextPaint.setTextSize(64f);
         mTextPaint.setColor(Color.WHITE);
@@ -62,7 +62,7 @@ public class GonioView extends View {
 
     private void drawHandles(Canvas canvas) {
         for (Point handle : mHandles) {
-            canvas.drawCircle(handle.x, handle.y, HANDLE_SIZE, mHandlePaint);
+            canvas.drawCircle(handle.x, handle.y, mHandleSize, mHandlePaint);
         }
     }
 
@@ -124,7 +124,7 @@ public class GonioView extends View {
 
     private Point checkIfHandleTouch(float x, float y) {
         for (Point handle : mHandles) {
-            if (Math.sqrt(Math.pow(x - handle.x, 2) + Math.pow(y - handle.y, 2)) < HANDLE_SIZE) {
+            if (Math.sqrt(Math.pow(x - handle.x, 2) + Math.pow(y - handle.y, 2)) < mHandleSize) {
                 return handle;
             }
         }
@@ -132,8 +132,8 @@ public class GonioView extends View {
     }
 
     private boolean checkInBounds(float x, float y) {
-        return ((HANDLE_SIZE / 2 < x && x < getRight() - HANDLE_SIZE / 2) &&
-                (HANDLE_SIZE / 2 < y && y < getBottom() - HANDLE_SIZE / 2));
+        return ((mHandleSize / 2 < x && x < getRight() - mHandleSize / 2) &&
+                (mHandleSize / 2 < y && y < getBottom() - mHandleSize / 2));
     }
 
     public int getCurrentAngle() {
@@ -155,6 +155,11 @@ public class GonioView extends View {
     public void setColor(int color) {
         mHandlePaint.setColor(color);
         invalidate();
+    }
+
+    public void setHandleSize(int handleSize) {
+        mHandleSize = handleSize;
+        mHandlePaint.setStrokeWidth(mHandleSize / 4);
     }
 
     public interface OnAngleSelectedListener {
